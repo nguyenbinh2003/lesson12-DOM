@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <style>
+      #errorMsg {
+        color: red;
+      }
+
+      #error {
+        color: red;
+      }
+
+      #login {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+        margin: 0 auto;
+      }
+      input {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Full stack => frontend , backend -->
+    <p id="errorMsg">
+      <!-- innner -->
+    </p>
+    <p id="error"></p>
+    <form id="login">
+      <input name="user" type="text" placeholder="Username" />
+      <input name="email" type="email" placeholder="Email" />
+      <input name="pwd" type="password" placeholder="Passeword" />
+      <input name="age" type="number" placeholder="age" />
+      <input class="button is-success" type="submit" value="Login" />
+    </form>
+
+    <script>
+      // Bước 1: Tìm kiếm elemennt
+      const loginForm = document.getElementById("login");
+      const errorEl = document.getElementById("errorMsg");
+      const error = document.getElementById("error");
+
+      // Bước 2: Xử  lý
+      // loginForm.onclick = function (e) {
+      //     e.preventDefault();
+      // };
+
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        // const inputUser = document.getElementById("user");
+        // console.log(inputUser);
+        const userEl = e.target.user; // gọi lấy thẻ input bằng name
+        const user = userEl.value; // lay ra  gia tri
+        if (user.length < 5) {
+          // Hanh
+          errorEl.innerHTML = "<h1>Error: Username</h1>";
+        } else {
+          // Hanhkk
+          errorEl.innerHTML = "";
+        }
+      });
+
+      // THEM INPUT "age", 18 <= age <= 59 : hop le, else "tuoi khong  hop le"
+      function form(event) {
+        const inputElements = document.getElementsByTagName("input");
+        const ageEl = inputElements[3];
+        const age = ageEl.value;
+        if (age >= 19 && age <= 59) {
+          error.innerHTML = "";
+        } else {
+          error.innerHTML = "<h1>Error: Invalid age</h1>";
+        }
+      }
+      loginForm.addEventListener("submit", form);
+    </script>
+  </body>
+</html>
